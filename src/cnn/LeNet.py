@@ -2,7 +2,7 @@ from keras.utils.generic_utils import to_list
 from keras.utils.np_utils import to_categorical
 
 from keras.models import Sequential
-from keras.layers import Dense, Flatten, Dropout, Convolution2D, MaxPooling2D, AveragePooling2D
+from keras.layers import Dense, Flatten, Dropout, Convolution2D, AveragePooling2D
 from keras.optimizers import RMSprop
 from keras.callbacks import ReduceLROnPlateau
 from keras.preprocessing.image import ImageDataGenerator
@@ -16,7 +16,7 @@ def create_model():
     model.add(Dropout(0.25))
 
     model.add(Convolution2D(16, (5, 5), padding='valid', activation='sigmoid'))
-    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
+    model.add(AveragePooling2D(pool_size=(2, 2), strides=(2, 2)))
     model.add(Dropout(0.25))
 
     model.add(Convolution2D(120, (5, 5), padding='valid', activation='sigmoid'))

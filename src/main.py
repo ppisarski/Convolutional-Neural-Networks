@@ -24,6 +24,10 @@ def build_parser():
     parser.add_argument('--testsize',
                         dest='testsize', help='size of testset for training/validation split',
                         metavar='TESTSIZE', default=0.1)
+    parser.add_argument("--epochs", type=int,
+                        help="number of epochs", default=1)
+    parser.add_argument("-v", "--verbosity", type=int,
+                        help="increase output verbosity", default=0)
     return parser
 
 
@@ -50,8 +54,8 @@ def main():
     train_data_images, train_data_labels, test_data_images = read_datasets(options.train, options.test)
 
     # simplify images by scaling them
-    train_data_images /= 255
-    test_data_images /= 255
+    train_data_images /= 255.
+    test_data_images /= 255.
     # or alternatively making them black and white
     # train_data_images[train_data_images > 0] = 1
     # test_data_images[test_data_images > 0] = 1
@@ -76,8 +80,8 @@ def main():
 
         history = clf.fit(train_images, train_labels.values.ravel(),
                           validation_data=(valid_images, valid_labels),
-                          epochs=1, verbose=1)
-        plot_training_history(history, hist_filename)  # plot training history
+                          epochs=options.epochs, verbose=options.verbosity)
+        plot_training_history(history, hist_filename)
 
     if options.model.upper() == 'Net'.upper():
         clf = cnn.Net()
@@ -87,8 +91,8 @@ def main():
 
         history = clf.fit(train_images, train_labels.values.ravel(),
                           validation_data=(valid_images, valid_labels),
-                          epochs=1, verbose=1)
-        plot_training_history(history, hist_filename)  # plot training history
+                          epochs=options.epochs, verbose=options.verbosity)
+        plot_training_history(history, hist_filename)
 
     print(clf.score(valid_images, valid_labels))
 

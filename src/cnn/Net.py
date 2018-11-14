@@ -2,7 +2,7 @@ from keras.utils.generic_utils import to_list
 from keras.utils.np_utils import to_categorical
 
 from keras.models import Sequential
-from keras.layers import Dense, Flatten, Dropout, Convolution2D, MaxPooling2D, AveragePooling2D
+from keras.layers import Dense, Flatten, Dropout, Convolution2D, MaxPooling2D
 from keras.optimizers import RMSprop
 from keras.callbacks import ReduceLROnPlateau
 from keras.preprocessing.image import ImageDataGenerator
