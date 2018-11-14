@@ -20,7 +20,7 @@ def build_parser():
     parser.add_argument('--model',
                         dest='model', help='specify model',
                         metavar='MODEL', required=True,
-                        choices=['SVC', 'LeNet', 'Net'])
+                        choices=['SVC', 'LeNet', 'Net', 'CommitteeNet'])
     parser.add_argument('--testsize',
                         dest='testsize', help='size of testset for training/validation split',
                         metavar='TESTSIZE', default=0.1)
@@ -93,6 +93,17 @@ def main():
                           validation_data=(valid_images, valid_labels),
                           epochs=options.epochs, verbose=options.verbosity)
         plot_training_history(history, hist_filename)
+
+    if options.model.upper() == 'CommitteeNet'.upper():
+        clf = cnn.CommitteeNet()
+        cm_filename = 'images/CommitteeNet.png'
+        results_filename = 'results/CommitteeNet.csv'
+        hist_filename = 'images/CommitteeNet_history.png'
+
+        history = clf.fit(train_images, train_labels.values.ravel(),
+                          validation_data=(valid_images, valid_labels),
+                          epochs=options.epochs, verbose=options.verbosity)
+        plot_training_histories(history, hist_filename)
 
     print(clf.score(valid_images, valid_labels))
 

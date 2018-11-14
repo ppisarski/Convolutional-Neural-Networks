@@ -1,2 +1,2 @@
-from .LeNet import *
-from .Net import *
+from .LeNet import LeNet
+from .Net import Net, CommitteeNet

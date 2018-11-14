@@ -29,4 +29,8 @@ To run the code use
 
 ![Net](images/Net.png)
 
-### Ensemble of Neural Networks
+### Committee of Neural Networks
+
+![CommitteeNet history](images/CommitteeNet_history.png)
+
+![CommitteeNet](images/CommitteeNet.png)
