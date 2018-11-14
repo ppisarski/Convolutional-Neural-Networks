@@ -4,6 +4,9 @@ from sklearn.model_selection import train_test_split
 from sklearn import svm
 
 from analyze import plot_confusion_matrix
+from analyze import plot_training_history
+from analyze import plot_training_histories
+import cnn
 
 
 def build_parser():
@@ -17,7 +20,7 @@ def build_parser():
     parser.add_argument('--model',
                         dest='model', help='specify model',
                         metavar='MODEL', required=True,
-                        choices=['SVC'])
+                        choices=['SVC', 'LeNet', 'Net'])
     parser.add_argument('--testsize',
                         dest='testsize', help='size of testset for training/validation split',
                         metavar='TESTSIZE', default=0.1)
@@ -58,12 +61,35 @@ def main():
         train_test_split(train_data_images, train_data_labels, test_size=options.testsize, random_state=0)
 
     clf = None
-    if options.model.upper() == 'SVC':
+
+    if options.model.upper() == 'SVC'.upper():
         clf = svm.SVC()
         cm_filename = 'images/svc.png'
         results_filename = 'results/svc.csv'
+        clf.fit(train_images, train_labels.values.ravel())
 
-    clf.fit(train_images, train_labels.values.ravel())
+    if options.model.upper() == 'LeNet'.upper():
+        clf = cnn.LeNet()
+        cm_filename = 'images/LeNet.png'
+        results_filename = 'results/LeNet.csv'
+        hist_filename = 'images/LeNet_history.png'
+
+        history = clf.fit(train_images, train_labels.values.ravel(),
+                          validation_data=(valid_images, valid_labels),
+                          epochs=1, verbose=1)
+        plot_training_history(history, hist_filename)  # plot training history
+
+    if options.model.upper() == 'Net'.upper():
+        clf = cnn.Net()
+        cm_filename = 'images/Net.png'
+        results_filename = 'results/Net.csv'
+        hist_filename = 'images/Net_history.png'
+
+        history = clf.fit(train_images, train_labels.values.ravel(),
+                          validation_data=(valid_images, valid_labels),
+                          epochs=1, verbose=1)
+        plot_training_history(history, hist_filename)  # plot training history
+
     print(clf.score(valid_images, valid_labels))
 
     # Predict the values from the validation dataset
