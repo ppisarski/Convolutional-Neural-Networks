@@ -13,20 +13,18 @@ from keras.preprocessing.image import ImageDataGenerator
 def create_model():
     """Create Neural Network model"""
     model = Sequential()
-    model.add(Convolution2D(48, (5, 5), padding='same', activation='relu', input_shape=(28, 28, 1)))
-    model.add(Convolution2D(48, (5, 5), padding='same', activation='relu'))
+    model.add(Convolution2D(32, (5, 5), padding='same', activation='relu', input_shape=(28, 28, 1)))
+    model.add(Convolution2D(32, (5, 5), padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
 
-    model.add(Convolution2D(128, (3, 3), padding='same', activation='relu'))
-    model.add(Convolution2D(128, (3, 3), padding='same', activation='relu'))
+    model.add(Convolution2D(64, (3, 3), padding='same', activation='relu'))
+    model.add(Convolution2D(64, (3, 3), padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
     model.add(Dropout(0.25))
 
     model.add(Flatten())
-    model.add(Dense(512, activation='relu'))
-    model.add(Dropout(0.5))
-    model.add(Dense(128, activation='relu'))
+    model.add(Dense(256, activation='relu'))
     model.add(Dropout(0.5))
     model.add(Dense(10, activation='softmax'))
 
@@ -42,7 +40,7 @@ def create_model():
 class Net(object):
     def __init__(self):
         self.model = None
-        self.batch_size = 64
+        self.batch_size = 86
 
     def fit(self, x, y, **kwargs):
         """Constructs a new model and fits the model to `(x, y)`.
