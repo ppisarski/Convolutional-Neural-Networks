@@ -160,7 +160,7 @@ class CommitteeNet(object):
         self.n_members = 15
         self.model = [None] * self.n_members
         self.n_classes = 0
-        self.batch_size = 64
+        self.batch_size = 86
 
     def fit(self, x, y, **kwargs):
         """Constructs a new model and fits the model to `(x, y)`.
