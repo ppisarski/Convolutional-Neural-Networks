@@ -159,7 +159,7 @@ class Net(object):
 
 class CommitteeNet(object):
     def __init__(self):
-        self.n_members = 2
+        self.n_members = 15
         self.model = [None] * self.n_members
         self.n_classes = 0
         self.batch_size = 64

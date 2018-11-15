@@ -21,7 +21,7 @@ def build_parser():
                         dest='model', help='specify model',
                         metavar='MODEL', required=True,
                         choices=['SVC', 'LeNet', 'Net', 'CommitteeNet'])
-    parser.add_argument('--testsize',
+    parser.add_argument('--testsize', type=float,
                         dest='testsize', help='size of testset for training/validation split',
                         metavar='TESTSIZE', default=0.1)
     parser.add_argument("--epochs", type=int,
