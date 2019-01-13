@@ -1,7 +1,8 @@
-# Convolutional-Neural-Networks
+# Digit Recognizer
 
 Recognizing hand written digits is considered to be a "hello world" project for machine learning.
 In fact it is one of Kaggle's computer vision fundamentals with the famous MNIST data.
+Here, I was curious to see how much improvement in accuracy I can get from various learning algorithms.
 
 ## Before you begin
 To use virtual environment with jupyter notebooks you need to:
@@ -17,9 +18,11 @@ To run the code use
  
     python src/main.py --train data/train.csv --test data/test.csv --model svc
 
+To run it with different model change the `--model` parameter.
 
 ## Results
 
+This section contains results from various algorithms.
 
 ### SVC
 
