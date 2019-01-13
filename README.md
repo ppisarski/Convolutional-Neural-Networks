@@ -27,18 +27,12 @@ To run the code use
 
 ### LeNet
 
-![LeNet history](images/LeNet_history.png)
-
 ![LeNet](images/LeNet.png)
 
 ### Custom Neural Network
 
-![Net history](images/Net_history.png)
-
 ![Net](images/Net.png)
 
 ### Committee of Neural Networks
-
-![CommitteeNet history](images/CommitteeNet_history.png)
 
 ![CommitteeNet](images/CommitteeNet.png)
